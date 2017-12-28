@@ -19,35 +19,15 @@
 
 <body>
     <div id="title">2048</div>
+    <div id="app-2048">
     <div id="gameboard">
         <div id="bg-tiles">
-            <div class="row">
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-            </div>
-            <div class="row">
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-            </div>
-            <div class="row">
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-            </div>
-            <div class="row">
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-                <div class="tile bg-tile"></div>
-            </div>
+            <div class="tile bg-tile" v-for="tile in gameboard">{{tile}}</div>
         </div>
         <div id="game-tiles"></div>
     </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="js/main.js"></script>
 </body>
 
