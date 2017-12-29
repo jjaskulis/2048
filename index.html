@@ -22,7 +22,11 @@
     <div id="app-2048">
     <div id="gameboard">
         <div id="bg-tiles">
-            <div class="tile bg-tile" v-for="tile in gameboard">{{tile}}</div>
+            <div class="tile bg-tile" v-for="tile in gameboard[0]">{{tile.value}}</div>
+            <div class="tile bg-tile" v-for="tile in gameboard[1]">{{tile}}</div>
+            <div class="tile bg-tile" v-for="tile in gameboard[2]">{{tile}}</div>
+            <div class="tile bg-tile" v-for="tile in gameboard[3]">{{tile}}</div>
+
         </div>
         <div id="game-tiles"></div>
     </div>

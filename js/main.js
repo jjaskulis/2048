@@ -3,25 +3,39 @@
 var app = new Vue({
     el: "#app-2048",
     data:{
-        gameboard:[,,,,,,,,,,,e,,,,,]
+        gameboard:[
+            [{value:"",merged:false},{value:"",merged:false},{value:"",merged:false},{value:"",merged:false}],
+            [{value:"",merged:false},{value:"",merged:false},{value:"",merged:false},{value:"",merged:false}],
+            [{value:"",merged:false},{value:"",merged:false},{value:"",merged:false},{value:"",merged:false}],
+            [{value:"",merged:false},{value:"",merged:false},{value:"",merged:false},{value:"",merged:false}]
+        ]
     },
     methods:{
         newTile : function(amount){
-                let tileNum = Math.floor((Math.random() * 15));
-                if (this.gameboard[tileNum] > 0) {
+                let rowNum = Math.floor((Math.random() * 4));
+                let colNum = Math.floor((Math.random() * 4));
+                if (this.gameboard[rowNum][colNum] > 0) {
                     this.newTile();
                 } else {
-                    Vue.set(this.gameboard,tileNum,2);
+                    Vue.set(this.gameboard[colNum],rowNum,2);
                 }
                 if (amount > 1) {
                     this.newTile(amount - 1);
                 }
-            }
-    }
-})
-app.newTile(2);
-// function moveTile(direction) {
-//     var full_tile = document.getElementsByClassName("tile full-tile"),
+            },
+        moveTile : function(direction){
+            this.gameboard.forEach(function(row){
+                let rowLength = 3;
+                row.forEach(function(tile,tileIndex,array){
+                    if(tile == ""){
+                        return;
+                    }else{
+                        console.log(tile);
+                    }
+                })
+            })
+            console.log(direction);
+            //     var full_tile = document.getElementsByClassName("tile full-tile"),
 //         vectors = {
 //             left: [-1, 0],
 //             right: [1, 0],
@@ -43,52 +57,39 @@ app.newTile(2);
 //             full_tile[i].style.transform = "translate(" + (tile_x + (tile_size * vectors[direction][0])) + "px," + (tile_y + (tile_size * vectors[direction][1])) + "px)";
 //         }
 //     }
-// }
-
-// //receives
-// function tileCoordinates(tile) {
-//     var style = null,
-//         transform_property = null,
-//         tile_matrix = [],
-//         reg = /(-?\d+\.?\d*)/g;
-//     style = window.getComputedStyle(tile);
-//     transform_property = (style.getPropertyValue("-webkit-transform") ||
-//         style.getPropertyValue("-moz-transform") ||
-//         style.getPropertyValue("-ms-transform") ||
-//         style.getPropertyValue("-o-transform") ||
-//         style.getPropertyValue("transform"));
-//     tile_matrix = transform_property.match(reg);
-//     return tile_matrix.slice(4,6);
-// }
-
-// addEventListener("keydown", function (pressedKey) {
-//     switch (pressedKey.keyCode) {
-//     case 37:
-//         gameMove("left");
-//         pressedKey.preventDefault();
-//         break;
-//     case 38:
-//         gameMove("up");
-//         pressedKey.preventDefault();
-//         break;
-//     case 39:
-//         gameMove("right");
-//         pressedKey.preventDefault();
-//         break;
-//     case 40:
-//         gameMove("down");
-//         pressedKey.preventDefault();
-//         break;
-//     default:
-//     }
-// });
-
-// newTile(1);
+        }
+    }
+})
+ app.newTile(2);
 
 
-// function gameMove(direction){
-//     moveTile(direction); 
-//     newTile();
-// }
+addEventListener("keydown", function (pressedKey) {
+    switch (pressedKey.keyCode) {
+    case 37:
+        app.moveTile("left");
+        pressedKey.preventDefault();
+        break;
+    case 38:
+        app.moveTile("up");
+        pressedKey.preventDefault();
+        break;
+    case 39:
+        app.moveTile("right");
+        pressedKey.preventDefault();
+        break;
+    case 40:
+        app.moveTile("down");
+        pressedKey.preventDefault();
+        break;
+    default:
+    }
+});
+
+
+
+
+
+
+
 
 
