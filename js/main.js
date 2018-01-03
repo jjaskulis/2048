@@ -5,13 +5,13 @@ var app = new Vue({
     data: {
         gameboard: [
             [{
-                value: "4",
+                value: "",
                 merged: false
             }, {
                 value: "",
                 merged: false
             }, {
-                value: "4",
+                value: "",
                 merged: false
             }, {
                 value: "",
@@ -71,19 +71,23 @@ var app = new Vue({
                 this.newTile(amount - 1);
             }
         },
-        moveTile: function (direction) {
+        makeMove: function (direction) {
             switch (direction) {
                 case "right":
                     this.mergeTile("rows", "backward");
+                    this.moveTile("rows", "backward");
                     break;
                 case "left":
                     this.mergeTile("rows", "forward");
+                    this.moveTile("rows", "forward");
                     break;
                 case "down":
                     this.mergeTile("collumns", "backward");
+                    this.moveTile("collumns", "backward");
                     break;
                 case "up":
                     this.mergeTile("collumns", "forward");
+                    this.moveTile("collumns", "forward");
                     break;
             }
             this.newTile()
@@ -94,17 +98,16 @@ var app = new Vue({
             switch (dimension) {
                 case "rows":
                     for (let row = 0; row <= 3; row++) {
-
                         if (direction == "backward") {
                             j = 3;
                             i = 2;
                             increment = -1;
-                            loopEnd = 0;
+                            loopEnd = -1;
                         } else if (direction == "forward") {
                             j = 0;
                             i = 1;
                             increment = 1;
-                            loopEnd = 3;
+                            loopEnd = 4;
                         }
                         while (true) {
                             if (i == loopEnd) {
@@ -121,7 +124,7 @@ var app = new Vue({
                                     j += increment;
                                     i += increment;
                                 }
-                            } else if (tileA <= 0 && tileB <= 0 || tileA <= 0 && tileB > 0) {
+                            } else if ((tileA <= 0 && tileB <= 0) || (tileA <= 0 && tileB > 0)) {
                                 j += increment;
                                 i += increment;
                             } else if (tileA > 0 && tileB <= 0) {
@@ -136,12 +139,12 @@ var app = new Vue({
                             j = 3;
                             i = 2;
                             increment = -1;
-                            loopEnd = 0;
+                            loopEnd = -1;
                         } else if (direction == "forward") {
                             j = 0;
                             i = 1;
                             increment = 1;
-                            loopEnd = 3;
+                            loopEnd = 4;
                         }
                         while (true) {
                             if (i == loopEnd) {
@@ -160,7 +163,7 @@ var app = new Vue({
                                 }
                             } else if (i == loopEnd) {
                                 break;
-                            } else if (tileA <= 0 && tileB <= 0 || tileA <= 0 && tileB > 0) {
+                            } else if ((tileA <= 0 && tileB <= 0) || (tileA <= 0 && tileB > 0)) {
                                 j += increment;
                                 i += increment;
                             } else if (tileA > 0 && tileB <= 0) {
@@ -171,29 +174,59 @@ var app = new Vue({
                     }
                     break;
             }
+        },
+        moveTile: function (dimension, direction) {
+            let j,
+                i,
+                increment,
+                loopEnd;
+            switch (dimension) {
+                case "rows":
+                    if (direction == "backward") {
+                        j = 2;
+                        increment = -1;
+                        loopEnd = 3;
+                    } else if (direction == "forward") {
+                        j = 0;
+                        increment = 1;
+                        loopEnd = 0;
+                    }
+                    for (let row = 0; row <= 3; row++) {
+                        if (app.gameboard[row][j].value <= 0) {
+                            j += increment;
+                        } else {
+                            while (j + i != loopEnd) {
+                                if (app.gameboard[row][i] <= 0) {}
+                            }
+                        }
+                    }
+                    break;
+                case "collumns":
+                    break;
+            }
         }
     }
-
 })
+
 app.newTile(2);
 
 
 addEventListener("keydown", function (pressedKey) {
     switch (pressedKey.keyCode) {
         case 37:
-            app.moveTile("left");
+            app.makeMove("left");
             pressedKey.preventDefault();
             break;
         case 38:
-            app.moveTile("up");
+            app.makeMove("up");
             pressedKey.preventDefault();
             break;
         case 39:
-            app.moveTile("right");
+            app.makeMove("right");
             pressedKey.preventDefault();
             break;
         case 40:
-            app.moveTile("down");
+            app.makeMove("down");
             pressedKey.preventDefault();
             break;
     }
