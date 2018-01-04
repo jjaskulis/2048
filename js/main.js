@@ -5,7 +5,7 @@ var app = new Vue({
     data: {
         gameboard: [
             [{
-                value: "",
+                value: "4",
                 merged: false
             }, {
                 value: "",
@@ -31,7 +31,7 @@ var app = new Vue({
                 merged: false
             }],
             [{
-                value: "",
+                value: "2",
                 merged: false
             }, {
                 value: "",
@@ -44,7 +44,7 @@ var app = new Vue({
                 merged: false
             }],
             [{
-                value: "",
+                value: "2",
                 merged: false
             }, {
                 value: "",
@@ -94,116 +94,66 @@ var app = new Vue({
         },
         mergeTile: function (dimension, direction) {
             let i, j, increment, loopEnd;
-            let x = 0;
-            switch (dimension) {
-                case "rows":
-                    for (let row = 0; row <= 3; row++) {
-                        if (direction == "backward") {
-                            j = 3;
-                            i = 2;
-                            increment = -1;
-                            loopEnd = -1;
-                        } else if (direction == "forward") {
-                            j = 0;
-                            i = 1;
-                            increment = 1;
-                            loopEnd = 4;
-                        }
-                        while (true) {
-                            if (i == loopEnd) {
-                                break;
-                            }
-                            let tileA = app.gameboard[row][j].value;
-                            let tileB = app.gameboard[row][i].value;
-                            if (tileA > 0 && tileB > 0) {
-                                if (tileA == tileB) {
-                                    app.gameboard[row][j].value = tileA * 2;
-                                    app.gameboard[row][i].value = "";
-                                    break;
-                                } else {
-                                    j += increment;
-                                    i += increment;
-                                }
-                            } else if ((tileA <= 0 && tileB <= 0) || (tileA <= 0 && tileB > 0)) {
-                                j += increment;
-                                i += increment;
-                            } else if (tileA > 0 && tileB <= 0) {
-                                i += increment;
-                            }
-                        }
-                    }
-                    break;
-                case "collumns":
-                    for (let col = 0; col <= 3; col++) {
-                        if (direction == "backward") {
-                            j = 3;
-                            i = 2;
-                            increment = -1;
-                            loopEnd = -1;
-                        } else if (direction == "forward") {
-                            j = 0;
-                            i = 1;
-                            increment = 1;
-                            loopEnd = 4;
-                        }
-                        while (true) {
-                            if (i == loopEnd) {
-                                break;
-                            }
-                            let tileA = app.gameboard[j][col].value;
-                            let tileB = app.gameboard[i][col].value;
-                            if (tileA > 0 && tileB > 0) {
-                                if (tileA == tileB) {
-                                    app.gameboard[j][col].value = tileA * 2;
-                                    app.gameboard[i][col].value = "";
-                                    break;
-                                } else {
-                                    j += increment;
-                                    i += increment;
-                                }
-                            } else if (i == loopEnd) {
-                                break;
-                            } else if ((tileA <= 0 && tileB <= 0) || (tileA <= 0 && tileB > 0)) {
-                                j += increment;
-                                i += increment;
-                            } else if (tileA > 0 && tileB <= 0) {
-                                i += increment;
-                            }
+            for (let x = 0; x <= 3; x++) {
+                if (direction == "backward") {
+                    j = 3;
+                    i = 2;
+                    increment = -1;
+                    loopEnd = -1;
+                } else if (direction == "forward") {
+                    j = 0;
+                    i = 1;
+                    increment = 1;
+                    loopEnd = 4;
+                }
+                while (i != loopEnd) {
 
-                        }
+                    let tileA = dimension == "rows" ? app.gameboard[x][j].value : app.gameboard[j][x].value;
+                    let tileB = dimension == "rows" ? app.gameboard[x][i].value : app.gameboard[i][x].value;
+
+                    if ((tileA == tileB) && (tileA > 0 && tileB > 0)) {
+                        dimension == "rows" ? (app.gameboard[x][j].value = tileA * 2) : (app.gameboard[j][x].value = tileA * 2);
+                        dimension == "rows" ? (app.gameboard[x][i].value = "") : (app.gameboard[i][x].value = "");
+                        break;
+                    } else {
+                        j += increment;
+                        i += increment;
                     }
-                    break;
+                }
             }
         },
         moveTile: function (dimension, direction) {
-            let j,
-                i,
-                increment,
-                loopEnd;
-            switch (dimension) {
-                case "rows":
-                    if (direction == "backward") {
-                        j = 2;
-                        increment = -1;
-                        loopEnd = 3;
-                    } else if (direction == "forward") {
-                        j = 0;
-                        increment = 1;
-                        loopEnd = 0;
-                    }
-                    for (let row = 0; row <= 3; row++) {
-                        if (app.gameboard[row][j].value <= 0) {
-                            j += increment;
-                        } else {
-                            while (j + i != loopEnd) {
-                                if (app.gameboard[row][i] <= 0) {}
-                            }
-                        }
-                    }
-                    break;
-                case "collumns":
-                    break;
-            }
+            // let j,
+            //     increment,
+            //     loopEnd;
+            // let i = 0;
+            // for (let x = 0; x <= 3; x++) {
+            //     if (direction == "backward") {
+            //         j = 2;
+            //         increment = -1;
+            //         loopEnd = 3;
+            //     } else if (direction == "forward") {
+            //         j = 1;
+            //         increment = 1;
+            //         loopEnd = 0;
+            //     }
+            //     for (let y = 0; y <= 2; y++) {
+            //         let tileA = dimension == "rows" ? app.gameboard[x][j].value : app.gameboard[j][x].value;
+            //         if (tileA) {
+            //             while (j + i != loopEnd) {
+            //                 let tileB = dimension == "rows" ? app.gameboard[x][j + i].value : app.gameboard[j + i][x].value;
+            //                 if ((tileB == tileB) && (tileA > 0 && tileB > 0)) {
+            //                     dimension == "rows" ? (app.gameboard[x][j].value = tileA * 2) : (app.gameboard[j][x].value = tileA * 2);
+            //                     dimension == "rows" ? (app.gameboard[x][i].value = "") : (app.gameboard[i][x].value = "");
+            //                     break;
+            //                 } else {
+            //                     i += increment;
+            //                 }
+            //             }
+            //         }
+            //         j += increment;
+            //     }
+            // }
         }
     }
 })
