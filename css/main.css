@@ -57,7 +57,7 @@ body {
 .bg-tile {
     border: 1px solid #218757;
     box-shadow: 1px 1px 0px #218757, 2px 2px 4px #218757, 3px 3px 0px #218757;
-    background: #79c984;
+    background: rgb(121, 201, 132);
 }
 
 #game-tiles {
@@ -65,9 +65,18 @@ body {
 }
 
 .full-tile {
-    position: absolute;
     background: #CAE8CE;
     color: #363635;
     z-index: 9999;
     transform: matrix(1, 0, 0, 1, 0, 0);
 }
+
+
+/*Vue animation*/
+  .list-enter-active, .list-leave-active {
+    transition: all 1s;
+  }
+  .list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    transform: translateY(30px);
+  }
