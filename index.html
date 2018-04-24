@@ -14,22 +14,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 
 <body>
-    <div id="title">2048</div>
     <div id="app-2048">
-    <div id="gameboard">
-        <div id="bg-tiles">
-            <div class="tile bg-tile" v-for="tile in gameboard[0]">{{tile.value}}</div>
-            <div class="tile bg-tile" v-for="tile in gameboard[1]">{{tile}}</div>
-            <div class="tile bg-tile" v-for="tile in gameboard[2]">{{tile}}</div>
-            <div class="tile bg-tile" v-for="tile in gameboard[3]">{{tile}}</div>
-
+        <div class="info">
+           <h2>Score:</h2>
+           <p> {{game.score}}</p>
         </div>
-        <div id="game-tiles"></div>
-    </div>
+        <div class="gameboard">
+                <div class="tile" v-for="tile in gameboard[0]" v-bind:class="{'full-tile':tile.value}">
+                    <div v-if="tile.value !== ''" v-bind:style="{ background: 'hsl('+(180+360/12*(tile.value/2))+',35%,80%)'}">
+                    {{tile.value}}
+                    </div>
+                </div>
+                <div class="tile" v-for="tile in gameboard[1]" v-bind:class="{'full-tile':tile.value}">
+                    <div v-if="tile.value !== ''" v-bind:style="{ background: 'hsl('+(180+360/12*(tile.value/2))+',35%,80%)'}">
+                        {{tile.value}}
+                    </div>
+                </div>
+                <div class="tile" v-for="tile in gameboard[2]" v-bind:class="{'full-tile':tile.value}">
+                        <div v-if="tile.value !== ''" v-bind:style="{ background: 'hsl('+(180+360/12*(tile.value/2))+',35%,80%)'}">
+                        {{tile.value}}
+                        </div>
+                    </div>
+                    <div class="tile" v-for="tile in gameboard[3]" v-bind:class="{'full-tile':tile.value}">
+                        <div v-if="tile.value !== ''" v-bind:style="{ background: 'hsl('+(180+360/12*(tile.value/2))+',35%,80%)'}">
+                            {{tile.value}}
+                        </div>
+                    </div>
+            </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="js/main.js"></script>

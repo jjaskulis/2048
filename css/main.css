@@ -1,43 +1,35 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,900);
 
-html,
-button,
-input,
-select,
-textarea {
-    color: #222;
-}
-
-html {
-    font-size: 1em;
-    line-height: 1.4;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    background: #DBDECB;
-    color: #FFFFFF;
+    background: #FAFAFA;
+    color: #3a4958;
 }
 
-#title {
-    margin: 5px 0 5px 0;
+.info{
     text-align: center;
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: #363635;
 }
 
-#gameboard {
+.gameboard {
+    font-weight: 900;
     position: relative;
     margin: auto;
     width: 560px;
     height: 560px;
-    background: #4ead5b;
+    background: #AEB3B7;
     border-radius: 4px;
-    border: 2px solid #363635;
-    box-shadow: 1px 1px 0px #363635, 2px 2px 0px #363635, 3px 3px 0px #363635, 4px 4px 3px #363635, 5px 5px 0px #363635;
-}
+    border: 1px solid #3a4958;
+    box-shadow: 1px 1px 0px #3a4958,
+     2px 2px 0px #3a4958, 
+     3px 3px 0px #3a4958, 
+     4px 4px 0px #3a4958, 
+     5px 5px 0px #3a4958,
+     6px 6px 0px #3a4958,
+     7px 7px 0px #3a4958,
+     8px 8px 0px #3a4958,
+     9px 9px 0px #3a4958,
+     10px 10px 0px #3a4958;
+    }
 
 .tile {
     float: left;
@@ -50,23 +42,15 @@ body {
     font-size: 55px;
     text-align: center;
     line-height: 115px;
-    transition: transform 60ms;
-}
-
-.bg-tile {
-    border: 1px solid #218757;
-    box-shadow: 1px 1px 0px #218757, 2px 2px 4px #218757, 3px 3px 0px #218757;
-    background: #79c984;
-}
-
-#game-tiles {
-    position: absolute;
+    border: 1px solid #3a4958;
+    box-shadow: 1px 1px 0px #3a4958;
+    background: #AEB3B7;
+    overflow: hidden;
 }
 
 .full-tile {
-    position: absolute;
-    background: #CAE8CE;
-    color: #363635;
-    z-index: 9999;
-    transform: matrix(1, 0, 0, 1, 0, 0);
+    box-shadow: 1px 1px 0px #3a4958,
+                2px 2px 0px #3a4958,
+                3px 3px 0px #3a4958;
+    transition: 0.09s all;
 }
