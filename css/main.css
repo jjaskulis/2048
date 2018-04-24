@@ -43,14 +43,17 @@ body {
     text-align: center;
     line-height: 115px;
     border: 1px solid #3a4958;
-    box-shadow: 1px 1px 0px #3a4958;
     background: #AEB3B7;
     overflow: hidden;
+    transition: 0.2s all cubic-bezier(.22,.61,.36,1);
+
 }
 
 .full-tile {
     box-shadow: 1px 1px 0px #3a4958,
                 2px 2px 0px #3a4958,
                 3px 3px 0px #3a4958;
-    transition: 0.09s all;
+}
+.number{
+    transition: 0.15s all cubic-bezier(.22,.61,.36,1);
 }
