@@ -1,0 +1,63 @@
+$tile-height: 115;
+$tile-margin: 16;
+
+@for $row from 0 through 3 {
+  @for $column from 0 through 3 {
+    .position_#{$row}_#{$column} {
+      top: 115px * $row + $tile-margin * $row + $tile-margin;
+      left: 115px * $column + $tile-margin * $column + $tile-margin;
+    }
+  }
+}
+
+@for $fromRow from 0 through 3 {
+  @for $toRow from 0 through 3 {
+    $name: row_from_#{$fromRow}_to_#{$toRow};
+    @if $fromRow==$toRow {
+      .#{$name} {
+        top: 115px * $toRow + $tile-margin;
+      }
+    }
+    @else {
+      .#{$name} {
+        animation-duration: 0.20s;
+        animation-name: $name;
+        animation-fill-mode: forwards;
+      }
+      @keyframes #{$name} {
+        from {
+          top: 115px * $fromRow + $tile-margin;
+        }
+        to {
+          top: 115px * $toRow + $tile-margin * $toRow + $tile-margin;
+        }
+      }
+    }
+  }
+}
+
+@for $fromColumn from 0 through 3 {
+  @for $toColumn from 0 through 3 {
+    $name: col_from_#{$fromColumn}_to_#{$toColumn};
+    @if $fromColumn==$toColumn {
+      .#{$name} {
+        left: 115px * $toColumn + $tile-margin * $toColumn + $tile-margin;
+      }
+    }
+    @else {
+      .#{$name} {
+        animation-duration: 0.20s;
+        animation-name: $name;
+        animation-fill-mode: forwards;
+      }
+      @keyframes #{$name} {
+        from {
+          left: 115px * $fromColumn + $tile-margin* $fromColumn + $tile-margin;
+        }
+        to {
+          left: 115px * $toColumn + $tile-margin* $toColumn + $tile-margin;
+        }
+      }
+    }
+  }
+}

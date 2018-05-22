@@ -1,0 +1,75 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,900);
+body {
+  font-family: 'Roboto', sans-serif;
+  background: #fefefe;
+  color: #253858; }
+
+.info {
+  text-align: center; }
+
+.gameboard {
+  font-weight: 900;
+  position: relative;
+  margin: auto;
+  width: 545px;
+  height: 545px;
+  background: #f2f3f4;
+  border-radius: 4px;
+  border: 1px solid #253858;
+  box-shadow: 1px 1px 0px #253858, 2px 2px 0px #253858, 3px 3px 0px #253858, 4px 4px 0px #253858, 5px 5px 0px #253858, 6px 6px 0px #253858, 7px 7px 0px #253858, 8px 8px 0px #253858, 9px 9px 0px #253858, 10px 10px 0px #253858; }
+
+.tile {
+  float: left;
+  position: relative;
+  height: 115px;
+  width: 115px;
+  margin-left: 15px;
+  margin-top: 15px;
+  border-radius: 4px;
+  font-size: 55px;
+  text-align: center;
+  line-height: 115px;
+  overflow: hidden;
+  border: 1px solid #253858; }
+
+.bg-tile {
+  background: #253858;
+  opacity: 0.1; }
+
+.full-tile {
+  position: absolute;
+  margin: 0;
+  box-shadow: 1px 1px 0px #253858, 2px 2px 0px #253858, 3px 3px 0px #253858; }
+
+[v-cloak] {
+  display: none; }
+
+.new {
+  -webkit-animation-duration: 0.20s;
+          animation-duration: 0.20s;
+  -webkit-animation-name: new;
+          animation-name: new;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards; }
+
+@-webkit-keyframes new {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1); }
+  95% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes new {
+  0% {
+    -webkit-transform: scale(0.1);
+            transform: scale(0.1); }
+  95% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1); }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
